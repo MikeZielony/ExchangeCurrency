@@ -11,17 +11,12 @@ export class RateServiceService {
   constructor(private http: HttpClient) { }
 
   getDateRate() {
+
     return this.http.get(this.latestRatesUrl, {responseType: 'text'}).pipe(
         map(result => {
           let rows = result.split('\n');
-          rows.splice(0, 1);
-          //console.log(rows);
-          rows.forEach(row => {
-            let cols = row.split(/,(?=\S)/)
-
-
-          })
-          return result;
+          let row = result.split(',');
+          return row;
         })
     )
   }
