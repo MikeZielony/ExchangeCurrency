@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RateServiceService} from 'src/app/services/rate-service.service';
+import {Observable, of} from "rxjs";
 
 @Component({
     selector: 'app-rate-card',
@@ -24,5 +25,4 @@ export class RateCardComponent {
                 }
             )
     }
-
 }
