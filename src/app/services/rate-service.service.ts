@@ -9,18 +9,20 @@ import {Observable} from 'rxjs';
 export class RateServiceService {
 
   private latestRatesUrl = `https://api.exchangeratesapi.io/latest`;
+
   constructor(private http: HttpClient) { }
 
-    // tslint:disable-next-line:typedef
   getDateRate(): Observable<string[]> {
 
-    return this.http.get(this.latestRatesUrl, {responseType: 'text'}).pipe(
-        map(result => {
-            result.split('\n');
-            return result.split(',');
-        })
+    return this.http.get(this.latestRatesUrl).pipe(
+        // map(result => {
+        //     result.split('\n');
+        //     return result.split(',');
+        // })
     );
   }
+
+
 }
 
 
