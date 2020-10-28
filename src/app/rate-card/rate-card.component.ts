@@ -37,7 +37,7 @@ export class RateCardComponent {
     }
 
     // tslint:disable-next-line:use-lifecycle-interface
-    ngOnInit(): void {
+    /*ngOnInit(): void {
 
         this.service.getDateRate()
             .subscribe(
@@ -49,7 +49,7 @@ export class RateCardComponent {
                     }
                 }
             );
-    }
+    }*/
 
  setUpRateChangeInterval(){
         setInterval(() => {
