@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {RateServiceService} from './services/rate-service.service';
+import {Exchange} from './models/exchange';
 
 @Component({
     selector: 'app-root',
@@ -10,11 +11,12 @@ import {RateServiceService} from './services/rate-service.service';
 
 export class AppComponent implements OnInit {
     title = 'Currency-exchange';
+    exchange: Exchange;
 
     constructor(private service: RateServiceService) {
     }
 
     ngOnInit(): void {
-        this.service.getExchange('PLN').subscribe();
+        this.service.getExchange('PLN').subscribe(result =>this.exchange = result);
     }
 }
