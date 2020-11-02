@@ -1,12 +1,13 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {RateServiceService} from 'src/app/services/rate-service.service';
+
 
 @Component({
     selector: 'app-rate-card',
     templateUrl: './rate-card.component.html',
     styleUrls: ['./rate-card.component.css']
 })
-export class RateCardComponent {
+export class RateCardComponent implements OnInit {
     rates = [
         {
             base: 'USD',
@@ -27,38 +28,28 @@ export class RateCardComponent {
 
     index = 0;
     actualrate = {
-    base: 'USD',
-    target: 'JPY'
-};
-    // currencySign: string[] = ['USD', 'JPY', 'BGN', 'CZK', 'DKK', 'GBP', 'HUF', 'PLN', 'RON', 'SEK', 'CHF', 'ISK', 'NOK', 'HRK', 'RUB', 'TRY', 'AUD', 'BRL', 'CAD', 'CNY', 'HKD', 'IDR', 'ILS', 'INR', 'KRW', 'MXN', 'MYR', 'NZD', 'PHP', 'SGD', 'THB', 'ZAR'];
+        base: 'USD',
+        target: 'JPY'
+    };
+
 
     constructor(private service: RateServiceService) {
         this.setUpRateChangeInterval();
     }
 
-    // tslint:disable-next-line:use-lifecycle-interface
-    /*ngOnInit(): void {
+    ngOnInit(): void {
+    }
 
-        this.service.getDateRate()
-            .subscribe(
-                {
-                    next: (rows) => {
-                        for (let i = 1; i < rows.length - 2; i++) {
-                            console.log('Kurs do Euro : ' + rows[i]);
-                        }
-                    }
-                }
-            );
-    }*/
 
- setUpRateChangeInterval(){
+    setUpRateChangeInterval() {
         setInterval(() => {
-            if (this.index === this.rates.length){
+            if (this.index === this.rates.length) {
                 this.index = 0;
                 // tslint:disable-next-line:align
-            } this.actualrate = this.rates[this.index++];
+            }
+            this.actualrate = this.rates[this.index++];
 
-        },2000);
- }
+        }, 2000);
+    }
 
 }
