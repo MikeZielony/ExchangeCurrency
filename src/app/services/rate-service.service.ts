@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {map} from 'rxjs/operators';
-import {Observable} from 'rxjs';
 import {Exchange} from '../models/exchange';
 import {Rate} from '../models/rate';
 
@@ -16,17 +15,24 @@ export class RateServiceService {
     }
 
     getExchange(base: string): any {
-        return this.http.get(`${this.apiUrl}/latest?base=${base}&symbols=USD,EUR,CHF,GBP`).pipe(
+        return this.http.get(`${this.apiUrl}/latest?base=${base}&symbols=USD,EUR,CHF`).pipe(
             map(result => {
-                let rates: Rate[];
+                let rates: Rate[] = [];
 
-//todo for loop results, and push tu rates vairable object Rate for specific country
-
+                if (result.hasOwnProperty('rates')) {
+                    const rateList = Object.values(result.rates);
+                    const currency = Object.keys(result.rates);
+                    for (let i = 0; i < currency.length; i++) {
+                        const rateObject: Rate = {country: currency[i], rate: +rateList[i]};
+                        rates.push(rateObject);
+                    }
+                }
                 let tempObject: Exchange = {
                     base: result.base,
                     date: result.date,
-                    rates: rates
+                    rates
                 };
+                return tempObject;
             }));
     }
 }
