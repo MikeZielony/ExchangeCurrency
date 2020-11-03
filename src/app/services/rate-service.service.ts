@@ -27,7 +27,7 @@ export class RateServiceService {
                         rates.push(rateObject);
                     }
                 }
-                let tempObject: Exchange = {
+                const tempObject: Exchange = {
                     base: result.base,
                     date: result.date,
                     rates

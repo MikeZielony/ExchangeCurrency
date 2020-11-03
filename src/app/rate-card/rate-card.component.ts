@@ -8,29 +8,14 @@ import {RateServiceService} from 'src/app/services/rate-service.service';
     styleUrls: ['./rate-card.component.css']
 })
 export class RateCardComponent implements OnInit {
-    rates = [
-        {
-            base: 'USD',
-            target: 'JPY'
-        },
 
-        {
-            base: 'BGN',
-            target: 'CZK'
-        },
-
-        {
-            base: 'GBP',
-            target: 'HUF'
-        },
-
-    ];
 
     index = 0;
     actualrate = {
         base: 'USD',
         target: 'JPY'
     };
+    exchange: any;
 
 
     constructor(private service: RateServiceService) {
@@ -41,6 +26,7 @@ export class RateCardComponent implements OnInit {
     }
 
 
+    // tslint:disable-next-line:typedef
     setUpRateChangeInterval() {
         setInterval(() => {
             if (this.index === this.rates.length) {
